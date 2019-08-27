@@ -4,7 +4,7 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicLong;
 
-public abstract class MulExecutorRejectedExecutionHandler implements RejectedExecutionHandler {
+public abstract class MulRejectedExecutionHandler implements RejectedExecutionHandler {
 
     private AtomicLong m_rejectedCounter = new AtomicLong(0);
 

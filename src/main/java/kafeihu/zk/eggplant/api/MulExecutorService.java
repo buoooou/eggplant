@@ -11,7 +11,7 @@ public interface MulExecutorService extends MulExecutor{
 
     void shutdown();
 
-    <T> List<Future<T>> submit(Collection<? extends Callable<T>> callables);
+    <T> List<Future<T>> submit(Collection<? extends Callable<T>> callables) throws InterruptedException;
 
     <T> List<Future<T>> submitBegin(Collection<? extends Callable<T>> callables);
 

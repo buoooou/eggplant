@@ -26,8 +26,8 @@ public abstract class AbstractMulExecutorService implements MulExecutorService{
 
 
     @Override
-    public <T> List<Future<T>> submit(Collection<? extends Callable<T>> callables) {
-        return null;
+    public <T> List<Future<T>> submit(Collection<? extends Callable<T>> callables) throws InterruptedException {
+        return executor.invokeAll(callables);
     }
 
     @Override
