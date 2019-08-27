@@ -74,29 +74,4 @@ public class MulThreadPoolExecutor extends AbstractMulExecutorService{
         }
     }
 
-
-    @Override
-    public <T> List<Future<T>> submitBegin(Collection<? extends Callable<T>> callables) {
-
-
-
-
-        return null;
-    }
-
-    @Override
-    public <T> List<Future<T>> submitEnd(Collection<? extends Callable<T>> callables) {
-        return null;
-    }
-
-
-    @Override
-    public void executeBegin(Collection<? extends Runnable> runnables) {
-
-    }
-
-    @Override
-    public void executeEnd(Collection<? extends Runnable> runnables) {
-
-    }
 }

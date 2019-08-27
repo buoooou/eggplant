@@ -1,6 +1,7 @@
 package kafeihu.zk.eggplant.executor;
 
 import kafeihu.zk.eggplant.api.MulExecutorService;
+import kafeihu.zk.eggplant.executor.job.MulJob;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,12 +27,12 @@ public abstract class AbstractMulExecutorService implements MulExecutorService{
 
 
     @Override
-    public <T> List<Future<T>> submit(Collection<? extends Callable<T>> callables) throws InterruptedException {
+    public <T> List<Future<T>> submit(Collection<? extends MulJob<T>> callables) throws InterruptedException {
         return executor.invokeAll(callables);
     }
 
     @Override
-    public void execute(Collection<? extends Runnable> runnables) {
+    public void execute(Collection<? extends MulJob> runnables) {
 
     }
 }
