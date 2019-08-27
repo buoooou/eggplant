@@ -1,13 +1,13 @@
 package kafeihu.zk.eggplant.api;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface MulExecutor {
 
-    void execute(List<Runnable> runnables);
+    void execute(Collection<? extends Runnable> runnables);
 
-    void executeBegin(List<Runnable> runnables);
+    void executeBegin(Collection<? extends Runnable> runnables);
 
-    void executeEnd(List<Runnable> runnables);
+    void executeEnd(Collection<? extends Runnable> runnables);
 
 }
