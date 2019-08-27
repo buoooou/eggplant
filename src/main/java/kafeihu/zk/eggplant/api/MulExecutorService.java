@@ -12,10 +12,10 @@ public interface MulExecutorService extends MulExecutor{
 
     void shutdown();
 
-    <T> List<Future<T>> submit(Collection<? extends MulJob<T>> callables) throws InterruptedException;
+    <T> List<Future<T>> submit(Collection<? extends MulJob<T>> jobs) throws InterruptedException;
 
-    <T> List<Future<T>> submitBegin(Collection<? extends MulJob<T>> callables);
+    <T> List<Future<T>> submitBegin(Collection<? extends MulJob<T>> jobs);
 
-    <T> List<Future<T>> submitEnd(Collection<? extends MulJob<T>> callables);
+    <T> List<Future<T>> submitEnd(Collection<? extends MulJob<T>> jobs);
 
 }

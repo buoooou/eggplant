@@ -1,5 +1,8 @@
 package kafeihu.zk.eggplant.executor;
 
+import kafeihu.zk.eggplant.executor.job.MulJob;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
@@ -48,6 +51,52 @@ public class MulThreadPoolExecutor extends AbstractMulExecutorService{
                 keepAliveTime,unit,workQueue,threadFactory,handler);
     }
 
+    @Override
+    public <T> List<Future<T>> submitBegin(Collection<? extends MulJob<T>> jobs) {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(jobs.size());
+        List<Future<T>> futures = new ArrayList<>();
+        for(MulJob<T> job: jobs){
+            Callable<T> callable = new Callable<T>() {
+                @Override
+                public T call() throws Exception {
+                    cyclicBarrier.await();
+                    return job.execute();
+                }
+            };
+            Future<T> future = executor.submit(callable);
+            futures.add(future);
+        }
+        return futures;
+    }
+
+    @Override
+    public <T> List<Future<T>> submitEnd(Collection<? extends MulJob<T>> jobs) {
+        CountDownLatch latch = new CountDownLatch(jobs.size());
+        List<Future<T>> futures = new ArrayList<>();
+        for(MulJob<T> job: jobs){
+            Callable<T> callable = new Callable<T>() {
+                @Override
+                public T call() throws Exception {
+                    latch.countDown();
+                    return job.execute();
+                }
+            };
+            Future<T> future = executor.submit(callable);
+            futures.add(future);
+        }
+        return futures;
+    }
+
+    @Override
+    public void executeBegin(Collection<? extends MulJob> runnables) {
+
+    }
+
+    @Override
+    public void executeEnd(Collection<? extends MulJob> runnables) {
+
+    }
+
 
     /**
      * A handler for rejected tasks that throws a
@@ -73,5 +122,6 @@ public class MulThreadPoolExecutor extends AbstractMulExecutorService{
                     executor.toString());
         }
     }
+
 
 }

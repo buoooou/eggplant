@@ -6,10 +6,10 @@ import java.util.Collection;
 
 public interface MulExecutor {
 
-    void execute(Collection<? extends MulJob> runnables);
+    void execute(Collection<? extends MulJob> jobs);
 
-    void executeBegin(Collection<? extends MulJob> runnables);
+    void executeBegin(Collection<? extends MulJob> jobs);
 
-    void executeEnd(Collection<? extends MulJob> runnables);
+    void executeEnd(Collection<? extends MulJob> jobs);
 
 }
