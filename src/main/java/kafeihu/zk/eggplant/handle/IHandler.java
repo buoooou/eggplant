@@ -9,8 +9,7 @@ public interface IHandler {
     /***
      * 前置处理
      */
-    void preHandle();
-
+    void preHandle()throws HandleException;
     /***
      *  核心业务处理
      * @return
@@ -20,5 +19,5 @@ public interface IHandler {
     /***
      * 后置处理
      */
-    void postHandle();
+    void postHandle()throws HandleException;
 }
